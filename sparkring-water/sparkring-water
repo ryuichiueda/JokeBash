@@ -1,0 +1,34 @@
+#!/bin/bash
+# 水と水泡スクリプト
+# written by R. Ueda (USP友の会) Nov. 3, 2011
+
+tmp=/tmp/sparkring-water
+
+echo 'print "+"*80'	|
+python			> $tmp-bar
+
+for i in $(seq 1 50) ; do
+	sed -e 's/.\{'$(( ${RANDOM} % 80 ))'\}+/&o/' $tmp-bar	|
+	sed -e 's/.\{'$(( ${RANDOM} % 80 ))'\}+/&O/' 
+done > $tmp-pic
+
+
+while : ; do
+	clear
+	cat $tmp-pic
+
+	if [ $(( ${RANDOM} % 2 )) -eq 0 ] ; then
+		sed -e 's/\(.\)o/o\1/' $tmp-pic
+	else
+		sed -e 's/o\(.\)/\1o/' $tmp-pic
+	fi > $tmp-new
+
+	head -n 1 $tmp-new > $tmp-top
+	tail -n +2 $tmp-new > $tmp-bot
+
+	cat $tmp-bot $tmp-top > $tmp-pic
+	#ubuntu
+	sleep 0.05
+	#cent
+	#usleep 50
+done
