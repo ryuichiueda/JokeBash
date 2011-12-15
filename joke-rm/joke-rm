@@ -1,0 +1,16 @@
+#!/bin/bash -vx
+#
+# joke-rm <filename>
+#
+# written by R. Ueda (USP tomonokai) Dec. 15, 2011
+#
+# CAUTION!!!!: don't execute this script in an important directory
+
+$(
+	{
+		echo -e '\0162'
+		echo -e '\0155'
+		echo -n ' ' $1
+	}	|
+	tr -d '\n'
+)
