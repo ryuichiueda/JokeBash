@@ -1,6 +1,10 @@
 #!/bin/bash
-# 水と水泡スクリプト
-# written by R. Ueda (USP友の会) Nov. 3, 2011
+#
+# bubbles in water
+#
+# written by R. Ueda (USP Tomonokai) Nov. 3, 2011
+#
+# bug: Temporary files are not removed.
 
 tmp=/tmp/sparkring-water
 
@@ -27,8 +31,5 @@ while : ; do
 	tail -n +2 $tmp-new > $tmp-bot
 
 	cat $tmp-bot $tmp-top > $tmp-pic
-	#ubuntu
 	sleep 0.05
-	#cent
-	#usleep 50
 done
